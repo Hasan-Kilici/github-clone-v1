@@ -1,0 +1,32 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+<div class="container">
+<div class="row" style="margin-top:1.5vh">
+  <div class="margin-top g-link" style="width:91.8%">
+    <a href="/s/<%= profile.url %>/"><%= profile.url %></a> / <a href="/s/<%= profile.url %>/<%= repo.url %>"><%= repo.url %></a>
+  </div>
+  <% if(profile.token == user.token){ %>
+  <div style="width:5%">
+    <button class="cancel-btn" style="width:80px" onclick="window.location.href = '/add/file/<%= user.token %>/<%= repo.token %>'">
+      Add File
+    </button>
+  </div>
+  <% } %>
+</div>
+  <div class="github-card">
+    <% files.forEach( files =>{ %>
+      <div class="w-100">
+       <a style="text-decoration:none;color:#c9d1d9;" href="/s/<%= profile.url %>/<%= repo.url %>/<%= files.url %>/<%= files._id %>"><%= files.filename %>
+      </div>
+    <% }) %>  
+  </div>
+</div>    
+<style>
+@media only screen and (min-width:800px){
+  .container{
+    width:min(100% - 28%);
+    margin-inline: auto;
+  }
+}
+</style>
